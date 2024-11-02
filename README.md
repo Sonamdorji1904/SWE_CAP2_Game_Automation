@@ -157,3 +157,104 @@ while True:
 ### **Explanation:**
 
 When I execute this code, it checks the number of items I have by looking at the conditions I set and then it also checks if I have `Carrot_Seeds` and if I don't have the `Carrot_Seeds` then it trades using the `trade()` funtion. After trading the `Carrot_Seeds` before planning the `Carrots` it checks if the ground is tilled or not by using the `get_ground_type()` function and then only plants the carrots.
+
+### **Code:**
+
+```python
+clear()
+move(South)
+while True:
+	for i in range(get_world_size()):
+		move(North)
+		if can_harvest():
+			#Harvest
+			harvest()
+			
+			#Water Tank
+			if num_items(Items.Water_Tank) < 100:
+				trade(Items.Empty_Tank)
+			#watering
+			if get_water() < 0.75: #(b/w 0 - 1)
+				use_item(Items.Water_Tank)
+			#Hay
+			if num_items(Items.Hay) < 600:
+				if get_ground_type() == Grounds.Soil:
+					till()
+				plant(Entities.Grass)
+			#Wood
+			elif num_items(Items.Wood) < 400:
+				if get_ground_type() == Grounds.Soil:
+					till()
+				plant(Entities.Bush)
+			#Carrots
+			else:
+				if num_items(Items.Carrot_Seed) == 0:
+					trade(Items.Carrot_Seed)
+				if get_ground_type() == Grounds.Turf:
+					till()
+				plant(Entities.Carrots)
+	
+	move(East)
+```
+
+### **Explanation:**
+
+In the watering part of the code, the character ensures it has enough filled water tanks and maintains an optimal water level for crops. First, it checks if the inventory contains fewer than 100 water tanks using `num_items(Items.Water_Tank) < 100`. If so, it calls `trade(Items.Empty_Tank)`, likely to acquire more water tanks or refill them. Then, the code checks the current water level with `if get_water() < 0.75`, and if the water level is below 75% (on a scale of 0 to 1), it uses one of the filled water tanks by calling `use_item(Items.Water_Tank)`. This keeps the crops adequately watered without wasting resources, as water tanks are only used when the level drops below the set threshold.
+
+### **Code:**
+```python
+clear()
+move(South)
+#variables
+num_watertank = 100
+num_hay = 600
+num_wood = 400
+num_carrots = 100
+#main loop
+while True:
+	for i in range(get_world_size()):
+		move(North)
+		if can_harvest():
+			#Harvest
+			harvest()
+			
+			#Water Tank
+			if num_items(Items.Water_Tank) < num_watertank:
+				trade(Items.Empty_Tank)
+			#watering
+			if get_water() < 0.75: #(b/w 0 - 1)
+				use_item(Items.Water_Tank)
+			#Hay
+			if num_items(Items.Hay) < num_hay:
+				if get_ground_type() == Grounds.Soil:
+					till()
+				plant(Entities.Grass)
+			#Wood
+			elif num_items(Items.Wood) < num_wood:
+				if get_ground_type() == Grounds.Soil:
+					till()
+				plant(Entities.Bush)
+			#Carrots
+			elif num_items(Items.Carrot) < num_carrots:
+				if num_items(Items.Carrot_Seed) == 0:
+					trade(Items.Carrot_Seed)
+				if get_ground_type() == Grounds.Turf:
+					till()
+				plant(Entities.Carrots)
+	
+	move(East)
+```
+
+### **Explanation:**
+
+In this code I used the variables to give the values of the items i want to harvest
+### **Note:**
+
+In this step;
+* The carrots are unlocked
+* I unlocked the variables now that I can set the number of entities I want to keep as a condition.
+* Unlocked the watering
+
+
+## Step 4: Farming on `4 x 4` tile
+
