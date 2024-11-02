@@ -315,6 +315,177 @@ while True:
 In this code I wrote the code to plant trees so that we can increase the yield of the woods and here I needed to plant trees in checkerboard pattern so that trees can grow well. For that I used the `get_pos_x` and `get_pos_y` functions to get the positions where I can plant the trees where the positions are `odd` so that it's position remain in checkerboard pattern.
 
 
+### **Code:**
+**Main**
+```python
+clear()
+move(South)
+##variables
+num_watertank = 100
+num_hay = 7000
+num_wood = 4000
+num_carrots = 3000
+##main loop
+while True:
+	for i in range(get_world_size()):
+		move(North)
+		x = get_pos_x()
+		y = get_pos_y()
+		if can_harvest():
+			
+			##Harvest
+			harvest()
+			
+			##Watering
+			watering()
+			
+			##Planting
+			planting()
+			
+				
+	#Next Row
+	move(East)
+```
+
+**Planting Function**
+```python
+def planting():
+	#Hay
+	if num_items(Items.Hay) < num_hay:
+		if get_ground_type() == Grounds.Soil:
+			till()
+		plant(Entities.Grass)
+				
+	#Wood
+	elif num_items(Items.Wood) < num_wood:
+		if (x % 2 == 0 and y % 2 == 1) or (x % 2 == 1 and y % 2 == 0):
+			plant(Entities.Tree)
+		else:
+			if get_ground_type() == Grounds.Soil:
+				till()
+			plant(Entities.Bush)
+	
+	#Carrots
+	elif num_items(Items.Carrot) < num_carrots:
+		if num_items(Items.Carrot_Seed) == 0:
+			trade(Items.Carrot_Seed, 5)
+		if get_ground_type() == Grounds.Turf:
+			till()
+		plant(Entities.Carrots)
+```
+
+**Watering Function**
+```python
+def watering():
+		#Water Tank
+		if num_items(Items.Water_Tank) < num_watertank:
+			trade(Items.Empty_Tank, 5)
+		#watering
+		if get_water() < 0.75: #(b/w 0 - 1)
+			use_item(Items.Water_Tank)
+```
+
+### **Explanation:**
+
+Unlocking the functions, I created a seperate windows for each function such as main, planting and the watering functions. After that, I called the functions of planting and watering in the main function. `Multi-trade` helped me trade more `Carrot_seeds` and `Empty_Tank` at a time and here I tarded for 5 using this line of codes `trade(Items.Empty_Tank, 5)` and `trade(Items.Carrot_Seed, 5)`.
+
+
+### **Code:**
+```python
+clear()
+do_a_flip()
+move(South)
+#variables
+num_watertank = 100
+num_hay = 10000
+num_wood = 6000
+num_carrots = 5000
+num_pumpkins = 600
+#main loop
+while True:
+	for i in range(get_world_size()):
+		move(North)
+		x = get_pos_x()
+		y = get_pos_y()
+		if can_harvest():
+			
+			#Harvest
+			harvest()
+			
+			#Watering
+			watering()
+			
+			#Planting
+			planting()
+		else:
+			if get_ground_type() == Grounds.Soil:
+				till()
+				
+	#Next Row
+	move(East)
+```
+**Planting Functions**
+```python
+def planting():
+	#Sunflower
+	if x == 0 and y == 0:
+		if num_items(Items.Sunflower_Seed) == 0:
+			trade(Items.Sunflower_Seed, 5)
+		if get_ground_type() == Grounds.Turf:
+			till()
+		plant(Entities.Sunflower)
+		
+	#Hay
+	elif num_items(Items.Hay) < num_hay:
+		if get_ground_type() == Grounds.Soil:
+			till()
+		plant(Entities.Grass)
+				
+	#Wood
+	elif num_items(Items.Wood) < num_wood:
+		if (x % 2 == 0 and y % 2 == 1) or (x % 2 == 1 and y % 2 == 0):
+			plant(Entities.Tree)
+		else:
+			if get_ground_type() == Grounds.Soil:
+				till()
+			plant(Entities.Bush)
+	
+	#Carrots
+	elif num_items(Items.Carrot) < num_carrots:
+		if num_items(Items.Carrot_Seed) == 0:
+			trade(Items.Carrot_Seed, 5)
+		if get_ground_type() == Grounds.Turf:
+			till()
+		plant(Entities.Carrots)
+		
+	
+	#Pumpkins
+	elif num_items(Items.Pumpkin) < num_pumpkins:
+		if num_items(Items.Pumpkin_Seed) == 0:
+			trade(Items.Pumpkin_Seed, 5)
+		if get_ground_type() == Grounds.Turf:
+			till()
+		plant(Entities.Pumpkin)
+```
+### **Explanation:**
+I have unlocked a new function called `measure`, so whenever the `drone` is above a petal, we can measure the amount of petals because here I need to harvest the sunflower with the most petals to get more power which helps in harvesting faster.
+#### Sunflower Planting:
+- Sunflowers are set to be planted at a designated starting position `(x == 0 and y == 0)`, indicating that they may be grown in a fixed location, possibly as a decorative crop or one that has special requirements.
+
+- The code checks if sunflower seeds are available (`num_items(Items.Sunflower_Seed) == 0`). If not, it trades for 5 more seeds.
+
+- Then, if the ground is turf, it uses `till()` to prepare the soil, ensuring that the sunflower has an optimal growth environment.
+
+- Finally, it plants the sunflower using `plant(Entities.Sunflower)`, maintaining the inventory and growth cycle for this specific crop.
+
+### Pumpkin Planting:
+- The pumpkin planting section checks if the inventory of harvested pumpkins is below the required amount (`num_items(Items.Pumpkin) < num_pumpkins`).
+
+- If the pumpkin seed inventory is empty, it trades for more seeds to prevent any planting delays.
+
+- Similar to sunflowers, it checks if the ground type is turf, tills the soil if necessary, and then plants the pumpkin using `plant(Entities.Pumpkin)`.
+
+From this approach I can ensure that both sunflowers and pumpkins are planted only when conditions are ideal, keeping their production consistent with game objectives, which likely involve managing resources efficiently and meeting specific crop threshold I set.
 
 
 
@@ -324,4 +495,154 @@ Functions that I unlocked in this step are;
 * Tree
 * Functions ( I can define new function using `def` keyword )
 * I increased the yield of carrots to 300% and woods to 400% by upgrading the carrots and tree functions.
-* multi-trade, so that I can buy seeds more at a time
+* multi-trade, so that I can buy seeds more at a time.
+
+
+## Step 5: Farming on `5 x 5` tile
+
+### **Code:**
+```python
+clear()
+do_a_flip()
+move(South)
+#variables
+num_watertank = 100
+num_hay = 20000
+num_wood = 16000
+num_carrots = 1400
+num_pumpkins = 10000
+#main loop
+while True:
+	for i in range(get_world_size()):
+		move(North)
+		x = get_pos_x()
+		y = get_pos_y()
+		if can_harvest():
+			
+			#Harvest
+			harvest()
+			
+			#Watering
+			watering()
+			
+			#Planting
+			planting()
+		else:
+			if get_ground_type() == Grounds.Soil:
+				till()
+				
+	#Next Row
+	move(East)
+
+
+
+def planting():
+	#Sunflower
+	if x == 0 and y == 0:
+		if num_items(Items.Sunflower_Seed) == 0:
+			trade(Items.Sunflower_Seed, 5)
+		if get_ground_type() == Grounds.Turf:
+			till()
+		plant(Entities.Sunflower)
+		
+	#Hay
+	elif num_items(Items.Hay) < num_hay:
+		if get_ground_type() == Grounds.Soil:
+			till()
+		plant(Entities.Grass)
+				
+	#Wood
+	elif num_items(Items.Wood) < num_wood:
+		if (x % 2 == 0 and y % 2 == 1) or (x % 2 == 1 and y % 2 == 0):
+			plant(Entities.Tree)
+		else:
+			if get_ground_type() == Grounds.Soil:
+				till()
+			plant(Entities.Bush)
+	
+	#Carrots
+	elif num_items(Items.Carrot) < num_carrots:
+		if num_items(Items.Carrot_Seed) == 0:
+			trade(Items.Carrot_Seed, 5)
+		if get_ground_type() == Grounds.Turf:
+			till()
+		plant(Entities.Carrots)
+		
+	
+	#Pumpkins
+	elif num_items(Items.Pumpkin) < num_pumpkins:
+		if num_items(Items.Pumpkin_Seed) == 0:
+			trade(Items.Pumpkin_Seed, 5)
+		if get_ground_type() == Grounds.Turf:
+			till()
+		plant(Entities.Pumpkin)
+
+
+def watering():
+		#Water Tank
+		if num_items(Items.Water_Tank) < num_watertank:
+			trade(Items.Empty_Tank, 5)
+		#watering
+		if get_water() < 0.75: #(b/w 0 - 1)
+			use_item(Items.Water_Tank)
+```
+
+### **Note:**
+
+In this step, where the farming tile is `5 x 5`, I just used the same code of the previous step by increasing the speed of the drone and yield of the entities so that I can unlock other important functions to farm. 
+
+
+## Step 6: Farming on `6 x 6` tile
+
+### **Code:**
+```python
+#main loop
+while True:
+	for i in range(get_world_size()):
+		#buy stuff
+		if num_items(Items.Sunflower_Seed) < 100:
+			trade(Items.Sunflower_Seed, get_world_size())
+		if num_items(Items.Carrot_Seed) < 100:
+			trade(Items.Carrot_Seed, get_world_size())
+		if num_items(Items.Pumpkin_Seed) < 100:
+			trade(Items.Pumpkin_Seed, get_world_size())
+			
+		move(North)
+		x = get_pos_x()
+		y = get_pos_y()
+		if can_harvest():
+			
+			#Harvest
+			harvest()
+			
+			#Watering
+			watering()
+			
+			#Planting
+			planting()
+		else:
+			if get_ground_type() == Grounds.Soil:
+				till()
+```
+
+### **Explanation:**
+
+In this part of my code, I added the new code to buy seeds to make sure I always have enough seeds for planting sunflowers, carrots, and pumpkins on the farm. I’ve set it up so that if I have fewer than 100 of any type of seed, the code will automatically trade for more. I use `get_world_size()` to decide how many seeds to buy, which means the amount I buy is based on the size of the area I’m managing. This way, I have enough seeds to cover the entire farm without going overboard and using up too much inventory space.
+
+This keeps my farm’s planting process smooth and efficient, so I don’t have to worry about running out of seeds and interrupting the automation. It’s all about making sure my resources are in balance, letting me focus on optimizing other parts of my farm.
+
+### **Note:**
+
+- I maxed the upgrade level for `Grass`, `Trees` and `Carrots` which helped a lot in increasing the yield for hay, wood and carrots. 
+- Now I expanded my farm size to `7 x 7` to harvest more sunflower for more power to speed up the drone.
+
+
+## Step 7: Farming on `7 x 7` tile
+
+
+
+
+
+
+### **Note:**
+- Unlocked utilities so that I can use `min()`, `max()`, `abs()` and `random()` functions. 
