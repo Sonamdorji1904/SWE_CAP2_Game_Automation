@@ -257,4 +257,71 @@ In this step;
 
 
 ## Step 4: Farming on `4 x 4` tile
+ ### **Code:**
+ ```python
+clear()
+move(South)
+#variables
+num_watertank = 100
+num_hay = 2000
+num_wood = 1000
+num_carrots = 800
+#main loop
+while True:
+	for i in range(get_world_size()):
+		move(North)
+		x = get_pos_x()
+		y = get_pos_y()
+		if can_harvest():
+			#Harvest
+			harvest()
+			
+			#Water Tank
+			if num_items(Items.Water_Tank) < num_watertank:
+				trade(Items.Empty_Tank)
+				
+			#watering
+			if get_water() < 0.75: #(b/w 0 - 1)
+				use_item(Items.Water_Tank)
+				
+			#Hay
+			if num_items(Items.Hay) < num_hay:
+				if get_ground_type() == Grounds.Soil:
+					till()
+				plant(Entities.Grass)
+				
+			#Wood
+			elif num_items(Items.Wood) < num_wood:
+				if (x % 2 == 0 and y % 2 == 1) or (x % 2 == 1 and y % 2 == 0):
+					plant(Entities.Tree)
+				else:
+					if get_ground_type() == Grounds.Soil:
+						till()
+					plant(Entities.Bush)
+	
+			#Carrots
+			elif num_items(Items.Carrot) < num_carrots:
+				if num_items(Items.Carrot_Seed) == 0:
+					trade(Items.Carrot_Seed)
+				if get_ground_type() == Grounds.Turf:
+					till()
+				plant(Entities.Carrots)
+	
+	move(East)
+ ```
 
+### **Explanation:**
+
+In this code I wrote the code to plant trees so that we can increase the yield of the woods and here I needed to plant trees in checkerboard pattern so that trees can grow well. For that I used the `get_pos_x` and `get_pos_y` functions to get the positions where I can plant the trees where the positions are `odd` so that it's position remain in checkerboard pattern.
+
+
+
+
+
+### **Note:**
+
+Functions that I unlocked in this step are;
+* Tree
+* Functions ( I can define new function using `def` keyword )
+* I increased the yield of carrots to 300% and woods to 400% by upgrading the carrots and tree functions.
+* multi-trade, so that I can buy seeds more at a time
