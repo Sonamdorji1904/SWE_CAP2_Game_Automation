@@ -1032,8 +1032,10 @@ In this code, I’m navigating a maze to reach a treasure. The function `SolveMa
 With these functions, I’m able to navigate the maze by continuously adjusting my direction and moving along the walls, ensuring I systematically explore all paths until I find the treasure. The left-hand rule, along with checking both left and right turns, helps me avoid getting stuck and ensures I’ll eventually reach my goal.
 
 ---
-![treasure](./treasures.png)
+![treasure](./maze_pattern.png)
 
+---
+![treasure](./maze_unlocked.png)
 ---
 ### **Code:**
 ```python
