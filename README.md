@@ -72,7 +72,7 @@ while True:
 
 #### **Explanation:**
 
-With the grid expanded to `3 x 1`, the drone moves north to harvest the crops and then continues harvesting.
+With the grid expanded to `1 x 3`, the drone moves north to harvest the crops and then continues harvesting.
 
 ---
 ![](./Images/1.png)
@@ -93,10 +93,9 @@ while True:
 
 #### **Explanation:**
 
-Here, I plant bushes and harvest both wood and grass alternately. Initially, I faced a challenge with the following code:
+Here, I plant bushes and harvest both wood and hay alternately. Initially, I faced a challenge with the following code:
 
-----
-![](./Images/2.png)
+
 
 ---
 ```python
@@ -141,6 +140,9 @@ while True:
 #### **Explanation:**
 
 With a `3 x 3` farming tile and unlocked loops, I set up the drone to move across the grid. This code checks if hay is less than 500, planting grass if it is. Otherwise, it plants bushes for wood. The `clear()` and `move(South)` commands reset the drone to its starting position before it moves north and east, continuing the harvest.
+
+----
+![](./Images/2.png)
 
 ---
 #### **Code:**
@@ -1075,11 +1077,11 @@ This setup allows me to manage cactus planting based on inventory, ground type, 
 - I unlocked one of the interesting function which is the `Auto_Unlock` which automatically unlocks things.
 
 ---
-![](./Images/unlocks_1.png)
+![](./Images/unlock_1.png)
 
 ---
 
-![](./Images/unlocks_2.png)
+![](./Images/unlock.png)
 
 ---
 # Challenges-and-Learnings
