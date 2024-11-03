@@ -43,7 +43,7 @@ The code runs and collects grass up to 5 units, after which the loop unlocks.
 ---
 #### **Demo:**
 
-![Step_1](./Game1.mp4)
+![Step_1](./Images/Game1.mp4)
 
 #### **Code:**
 
@@ -75,7 +75,7 @@ while True:
 With the grid expanded to `3 x 1`, the drone moves north to harvest the crops and then continues harvesting.
 
 ---
-![](./1.png)
+![](./Images/1.png)
 
 ---
 
@@ -96,7 +96,7 @@ while True:
 Here, I plant bushes and harvest both wood and grass alternately. Initially, I faced a challenge with the following code:
 
 ----
-![](./2.png)
+![](./Images/2.png)
 
 ---
 ```python
@@ -172,7 +172,7 @@ This code checks inventory levels and plants accordingly. If there are no carrot
 
 ---
 
-![](./3.png)
+![](./Images/3.png)
 
 ---
 #### **Code:**
@@ -211,7 +211,7 @@ while True:
 In this version, I added watering functionality. The code checks if the inventory has enough water tanks and ensures the water level is above 75%. If not, it uses a water tank. This keeps crops healthy without wasting water.
 
 ---
-![](./4.png)
+![](./Images/4.png)
 
 ---
 #### **Code:**
@@ -256,7 +256,7 @@ while True:
 Here, I used variables to track the number of items I want to maintain in my inventory.
 
 ---
-![](./5.png)
+![](./Images/5.png)
 
 ---
 ### **Note:**
@@ -327,7 +327,7 @@ while True:
 In this code, I included a way to plant trees in a checkerboard pattern to optimize wood yield. Using `get_pos_x()` and `get_pos_y()`, I identify grid positions to alternate between planting trees and bushes in a checkerboard pattern, ensuring optimal spacing for tree growth.
 
 ---
-![](./6.png)
+![](./Images/6.png)
 
 ---
 
@@ -402,7 +402,7 @@ def watering():
 With the functions feature unlocked, I separated `planting` and `watering` into standalone functions for cleaner, more modular code. Using `multi-trade`, I traded for seeds and water tanks in batches of 5 for efficiency. This keeps the inventory adequately stocked without interrupting farming tasks.
 
 ---
-![](./7.png)
+![](./Images/7.png)
 
 ---
 ### **Expanded Code with New Crops: Sunflowers and Pumpkins**
@@ -641,7 +641,7 @@ In this part of my code, I added the new code to buy seeds to make sure I always
 This keeps my farm’s planting process smooth and efficient, so I don’t have to worry about running out of seeds and interrupting the automation. It’s all about making sure my resources are in balance, letting me focus on optimizing other parts of my farm.
 
 
-![](./8.png)
+![](./Images/8.png)
 ### **Note:**
 
 - I maxed the upgrade level for `Grass`, `Trees` and `Carrots` which helped a lot in increasing the yield for hay, wood and carrots. 
@@ -706,7 +706,7 @@ In this part of the code, I’m using `pedalList` as a way to keep track of my s
 When I come across a sunflower that can be harvested, I only harvest it if its growth level matches the highest value in `pedalList` —meaning it’s one of the most mature in the field. After I harvest it, I remove its measurement from `pedalList`, so my list stays up-to-date with the sunflowers I have left. This way, I’m maximizing yield by only picking the most fully-grown sunflowers!
 
 ---
-![](./9.png)
+![](./Images/9.png)
 
 ---
 
@@ -826,10 +826,10 @@ def buying():
 			trade(Items.Fertilizer, get_world_size())
 ```
 ---
-![](./10.png)
+![](./Images/10.png)
 
 ----
-![](./9x9.png)
+![](./Images/9x9.png)
 
 ---
 ### **Note:**
@@ -1032,10 +1032,10 @@ In this code, I’m navigating a maze to reach a treasure. The function `SolveMa
 With these functions, I’m able to navigate the maze by continuously adjusting my direction and moving along the walls, ensuring I systematically explore all paths until I find the treasure. The left-hand rule, along with checking both left and right turns, helps me avoid getting stuck and ensures I’ll eventually reach my goal.
 
 ---
-![treasure](./maze_pattern.png)
+![treasure](./Images/maze_pattern.png)
 
 ---
-![treasure](./maze_unlocked.png)
+![treasure](./Images/maze_unlocked.png)
 ---
 ### **Code:**
 ```python
@@ -1075,11 +1075,11 @@ This setup allows me to manage cactus planting based on inventory, ground type, 
 - I unlocked one of the interesting function which is the `Auto_Unlock` which automatically unlocks things.
 
 ---
-![](./unlocks_1.png)
+![](./Images/unlocks_1.png)
 
 ---
 
-![](./unlocks_2.png)
+![](./Images/unlocks_2.png)
 
 ---
 # Challenges-and-Learnings
