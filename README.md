@@ -41,7 +41,7 @@ harvest()
 The code runs and collects grass up to 5 units, after which the loop unlocks.
 
 ---
-#### **Demo:**
+#### **Screenshots:**
 
 ![Step_1](./Images/Game1.mp4)
 
@@ -401,7 +401,7 @@ def watering():
 ```
 
 ### **Explanation:**
-With the functions feature unlocked, I separated `planting` and `watering` into standalone functions for cleaner, more modular code. Using `multi-trade`, I traded for seeds and water tanks in batches of 5 for efficiency. This keeps the inventory adequately stocked without interrupting farming tasks.
+With the functions feature unlocked, I separated `planting` and `watering` into standalone functions for cleaner and more modular code. Using `multi-trade`, I traded for seeds and water tanks in batches of 5 for efficiency. This keeps the inventory adequately stocked without interrupting farming tasks.
 
 ---
 ![](./Images/7.png)
